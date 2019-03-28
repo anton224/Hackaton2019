@@ -25,6 +25,7 @@ for kw in key_words:
 
 
 
+place_type = []
 name = []
 geo_location_lat = []
 geo_location_lng = []
@@ -40,10 +41,12 @@ type_of_the_attraction = []
 
 
 i_place=0
+i_type=0
 
 for query_result in query_results:
     for place in query_result.places:
         #print(place)
+        place_type.append(key_words[i_type])
         name.append(place.name)
         geo_location_lat.append(place.geo_location['lat'])
         geo_location_lng.append(place.geo_location['lng'])
@@ -64,6 +67,7 @@ for query_result in query_results:
         
         if i_place%10==0:
             print(i_place)
+    i_type+=1
 
 dataFrameStore3 = pd.DataFrame()
 dataFrameStore3['name'] = name
