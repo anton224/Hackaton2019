@@ -6,7 +6,8 @@ YOUR_API_KEY = 'AIzaSyDeCsaoAAMATv2BaZjYkrtJabSEkl20E_o'
 
 google_places = GooglePlaces(YOUR_API_KEY)
 
-key_words=['theatre', 'museum','restaurant','shop','sightseeing','beach', 'food market','point of interest','attraction','casino']
+key_words     =['theatre', 'museum','restaurant','food shop','sightseeing' ,'beach', 'food market','nature point of interest','attraction','casino']
+key_words_type=['Culture', 'Museum','Food'      ,'Shopping', 'Sight Seeing','Nature','Shopping'   ,'Nature',                  'Sight Seeing', 'Sight Seeing']
 query_results=[None]*len(key_words)
 
 i=0
@@ -46,7 +47,7 @@ i_type=0
 for query_result in query_results:
     for place in query_result.places:
         #print(place)
-        place_type.append(key_words[i_type])
+        place_type.append(key_words_type[i_type])
         name.append(place.name)
         geo_location_lat.append(place.geo_location['lat'])
         geo_location_lng.append(place.geo_location['lng'])
@@ -70,6 +71,7 @@ for query_result in query_results:
     i_type+=1
 
 dataFrameStore3 = pd.DataFrame()
+dataFrameStore3['place_type'] = place_type
 dataFrameStore3['name'] = name
 dataFrameStore3['geo_location_lat'] = geo_location_lat
 dataFrameStore3['geo_location_lng'] = geo_location_lng
